@@ -12,6 +12,3 @@ class TestFileSystem(unittest.TestCase):
     
     def test_file_exists(self):
         self.assertFalse(self.__uut.fileExists(""))
-         
-
-         
