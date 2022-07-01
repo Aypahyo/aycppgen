@@ -1,0 +1,43 @@
+<mxfile host="65bd71144e" pages="3">
+    <diagram name="Basic" id="HbhqEritjHn10FA2RO77">
+        <mxGraphModel dx="1117" dy="508" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="NEtxkHfMrJV4WWgsIpx1-10" value="Manual &lt;br&gt;Explorative &lt;br&gt;Testing" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=left;" vertex="1" parent="1">
+                    <mxGeometry x="140" y="70" width="210" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="NEtxkHfMrJV4WWgsIpx1-11" value="Automated&lt;br&gt;Unit&lt;br&gt;Testing" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;align=right;" vertex="1" parent="1">
+                    <mxGeometry x="360" y="70" width="220" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="NEtxkHfMrJV4WWgsIpx1-1" value="Core" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="380" y="160" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="NEtxkHfMrJV4WWgsIpx1-7" style="edgeStyle=none;html=1;" edge="1" parent="1" source="NEtxkHfMrJV4WWgsIpx1-2" target="NEtxkHfMrJV4WWgsIpx1-1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="NEtxkHfMrJV4WWgsIpx1-2" value="Adapter" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="220" y="160" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="NEtxkHfMrJV4WWgsIpx1-8" style="edgeStyle=none;html=1;" edge="1" parent="1" source="NEtxkHfMrJV4WWgsIpx1-3" target="NEtxkHfMrJV4WWgsIpx1-1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="NEtxkHfMrJV4WWgsIpx1-3" value="Core_test" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="380" y="80" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="NEtxkHfMrJV4WWgsIpx1-6" style="edgeStyle=none;html=1;" edge="1" parent="1" source="NEtxkHfMrJV4WWgsIpx1-4" target="NEtxkHfMrJV4WWgsIpx1-2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="NEtxkHfMrJV4WWgsIpx1-4" value="Adapter_demo" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="220" y="80" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="NEtxkHfMrJV4WWgsIpx1-9" style="edgeStyle=none;html=1;" edge="1" parent="1" source="NEtxkHfMrJV4WWgsIpx1-5" target="NEtxkHfMrJV4WWgsIpx1-2">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="NEtxkHfMrJV4WWgsIpx1-5" value="App" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="220" y="240" width="120" height="60" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

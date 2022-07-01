@@ -2,6 +2,7 @@
 *
 #Whitelist specifics
 !setup.py
+!MANIFEST.in
 !aycppgen.py
 !aycppgen_core/**
 !tests/**

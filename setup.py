@@ -10,6 +10,7 @@ setup(
    author_email='Aypahyo@github.com',
    url='https://github.com/Aypahyo/ayTempler',
    packages=['aycppgen_core'],
+   include_package_data=True,
    py_modules=['aycppgen'],
    entry_points={
     'console_scripts' : [
