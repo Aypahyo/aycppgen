@@ -20,7 +20,6 @@ class GuiController:
 
     def run(self):
         WINDOW_READ_TIMEOUT_KEY = "WINDOW_READ_TIMEOUT_KEY"
-
         while True:
             event, values = self.__window.read(timeout=20, timeout_key=WINDOW_READ_TIMEOUT_KEY)
             if event == "Exit" or event == sg.WIN_CLOSED:
@@ -71,7 +70,8 @@ class GuiController:
         self.__window[TAB_PROJECT_FOLDER_CREATE_BUTTON].update(disabled=True)
 
     def TAB_PROJECT_PROJECT_CREATE_BUTTON(self, values, key):
-        self.__project_manager.create_project()
+        proj_name = self.__window[TAB_PROJECT_PROJECT_CREATE_NAME].get()
+        self.__project_manager.create_project(proj_name)
         self.project_explorer_update_content()
         self.__window[TAB_PROJECT_PROJECT_CREATE_BUTTON].update(disabled=True)
 
@@ -81,17 +81,22 @@ class GuiController:
         selected_base = self.__project_manager.get_project_explorer_base()
         return f'{selected_base}/{folder}'
 
+    def project_explorer_update_content(self):
+        if self.__project_manager.try_update_project_explorer_base_content():
+            lb : sg.Listbox = self.__window[PROJECT_EXPLORER_VIEW]
+            lb.update(values=self.__project_manager.get_project_explorer_base_content())
+            self.tab_project_folder_create_button_update_enable()
+            self.tab_project_project_create_button_update_enable()
+
     def tab_project_folder_create_button_update_enable(self):
         creation_target = self.tag_project_folder_creation_target()
         can_create = creation_target != "" and not exists(creation_target)
         self.__window[TAB_PROJECT_FOLDER_CREATE_BUTTON].update(disabled=not can_create)
 
-    def project_explorer_update_content(self):
+    def tab_project_project_create_button_update_enable(self):
         selected_base = self.__project_manager.get_project_explorer_base()
-        if self.__project_manager.try_update_project_explorer_base_content():
-            lb : sg.Listbox = self.__window[PROJECT_EXPLORER_VIEW]
-            lb.update(values=self.__project_manager.get_project_explorer_base_content())
-        #TODO this is misxing something - maybe these do not need to ba called all the time
-        self.tab_project_folder_create_button_update_enable()
         self.__window[TAB_PROJECT_PROJECT_CREATE_BASE].update(selected_base)
-        self.__window[TAB_PROJECT_PROJECT_CREATE_BUTTON].update(disabled=not self.__project_manager.can_create_project())
+
+        proj_name = self.__window[TAB_PROJECT_PROJECT_CREATE_NAME].get()
+        can_create = self.__project_manager.can_create_project(proj_name)
+        self.__window[TAB_PROJECT_PROJECT_CREATE_BUTTON].update(disabled=not can_create)

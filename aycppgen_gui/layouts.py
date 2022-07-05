@@ -10,6 +10,7 @@ TAB_PROJECT_PROJECT_CREATE_BASE = "TAB_PROJECT_PROJECT_CREATE_BASE"
 TAB_PROJECT_PROJECT_CREATE_BUTTON = "TAB_PROJECT_PROJECT_CREATE_BUTTON"
 TAB_PROJECT_FOLDER_CREATE_INPUT = "TAB_PROJECT_FOLDER_CREATE_INPUT"
 TAB_PROJECT_FOLDER_CREATE_BUTTON = "TAB_PROJECT_FOLDER_CREATE_BUTTON"
+TAB_PROJECT_PROJECT_CREATE_NAME = "TAB_PROJECT_PROJECT_CREATE_NAME"
 
 BUTTON_SIZE = (15, 1)
 
@@ -17,10 +18,13 @@ BUTTON_SIZE = (15, 1)
 def GetLayouts(config : Config) -> list:
     project_tab = [
         [
+            sg.Text( key=TAB_PROJECT_PROJECT_CREATE_BASE, expand_x=True, background_color="light grey" ),
+        ],
+        [
             sg.Input( key=TAB_PROJECT_FOLDER_CREATE_INPUT, expand_x=True, enable_events=True ),
             sg.Button("Create Folder", size=BUTTON_SIZE , key=TAB_PROJECT_FOLDER_CREATE_BUTTON, disabled=True)
         ],[
-            sg.Text( key=TAB_PROJECT_PROJECT_CREATE_BASE, expand_x=True, background_color="light grey" ),
+            sg.Input( key=TAB_PROJECT_PROJECT_CREATE_NAME, expand_x=True),
             sg.Button("Create Project", size=BUTTON_SIZE, key=TAB_PROJECT_PROJECT_CREATE_BUTTON, disabled=True)
         ]]
     layout_2 = [[sg.Text("interface")]]

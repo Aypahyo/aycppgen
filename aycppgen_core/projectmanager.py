@@ -45,12 +45,15 @@ class ProjectManager:
             return self.__project_explorer_base
         return ""
 
-    def can_create_project(self) -> bool:
+    def can_create_project(self, proj_name) -> bool:
+        if(proj_name is None or proj_name == ""):
+            return false;
+        proj_name
         dir = isdir(self.get_project_explorer_base())
         dir_mostly_empty = len(self.get_project_explorer_base_content()) < 5
         return dir & dir_mostly_empty
 
-    def create_project(self) -> None:
-        spec = ProjectSpec("genproject")
+    def create_project(self, proj_name) -> None:
+        spec = ProjectSpec(proj_name)
         gen = Generator(LinuxFileSystem())
         gen.CreateProject(spec, self.get_project_explorer_base())
