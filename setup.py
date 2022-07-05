@@ -9,7 +9,7 @@ setup(
    author='Aypahyo',
    author_email='Aypahyo@github.com',
    url='https://github.com/Aypahyo/ayTempler',
-   packages=['aycppgen_core'],
+   packages=['aycppgen_core', 'aycppgen_gui'],
    include_package_data=True,
    py_modules=['aycppgen'],
    entry_points={

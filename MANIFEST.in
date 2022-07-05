@@ -1,1 +1,1 @@
-recursive-include aycppgen_core/project_template *
+recursive-include aycppgen_core/templates/project *

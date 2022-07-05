@@ -4,5 +4,7 @@
 !setup.py
 !MANIFEST.in
 !aycppgen.py
+!requirements.txt
 !aycppgen_core/**
+!aycppgen_gui/**
 !tests/**

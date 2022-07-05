@@ -1,18 +1,20 @@
 
 from genericpath import isdir, isfile
-from logging import Logger, getLogger
+from logging import Logger
 import os
 from pathlib import Path
 
 from aycppgen_core.generator import ContentFileOrDirectory, FileSystem
+from aycppgen_core.logginghelper import logginghelper_getOrDefault
 
 class LinuxFileSystem(FileSystem):
     def __init__(self, logger : Logger = None) -> None:
-        self.__logger :Logger = logger if logger is not None else getLogger()
+        self.__logger :Logger = logginghelper_getOrDefault("LinuxFileSystem", logger)
         super().__init__()
 
     def create_folders(self, folders : 'list[str]') -> bool:
         for folder in folders:
+            #todo replace os.system call so errors can be redirected to logging
             command = f'mkdir -p "{folder}" '
             code = os.system(command)
             if code == 0:
@@ -24,10 +26,10 @@ class LinuxFileSystem(FileSystem):
 
     def get_project_template_root(self) -> str:
         mydirectory = Path(__file__).resolve().parent
-        project_template_root = f'{mydirectory}/project_template'
+        project_template_root = f'{mydirectory}/templates/project'
 
         while(mydirectory is not None):
-            project_template_root = f'{mydirectory}/project_template'
+            project_template_root = f'{mydirectory}/templates/project'
             if isdir(project_template_root):
                 return project_template_root
             self.__logger.debug(f'templates not found "{project_template_root}"')

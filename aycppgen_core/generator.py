@@ -1,17 +1,6 @@
 import os
 from re import template
 
-
-ELEMENT_PROJECT = "project"
-ELEMENT_INTERFACE = "interface"
-ELEMENT_CLASS = "class"
-ELEMENT_DTO = "dto"
-
-COMMAND_CREATE = "create"
-
-elements = [ELEMENT_PROJECT, ELEMENT_INTERFACE, ELEMENT_CLASS, ELEMENT_DTO]
-commands = [COMMAND_CREATE]
-
 class ContentFileOrDirectory:
     name : str = ""
     baseDir : str = ""

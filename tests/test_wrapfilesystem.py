@@ -14,6 +14,7 @@ class TestFileSystem(unittest.TestCase):
         self.__testbasepath = "tests/test_wrapfilesystem_data"
         os.system(f'mkdir -p {self.__testbasepath}')
         self.__logger = Mock()
+        self.__logger.handlers = ["fake"]
         self.__uut = LinuxFileSystem(logger=self.__logger)
         return super().setUp()
 
@@ -46,7 +47,7 @@ class TestFileSystem(unittest.TestCase):
         self.__logger.error.assert_called_once()
 
     def test_get_project_template_root(self):
-        expected_end = "aycppgen_core/project_template"
+        expected_end = "aycppgen_core/templates/project"
         tempalte_folder = self.__uut.get_project_template_root()
         self.assertTrue(tempalte_folder.endswith(expected_end), f'{tempalte_folder} does not end in {expected_end}')
 
