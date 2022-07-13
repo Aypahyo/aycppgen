@@ -1,21 +1,7 @@
 import os
-from re import template
+from aycppgen_core.FileSystemEntry import FileSystemEntry
 
-class ContentFileOrDirectory:
-    name : str = ""
-    baseDir : str = ""
-    relative : str = ""
-    content : str = ""
-    isDirectory : bool = False
-    isFile : bool = False
-
-class FileSystem:
-    def load_all_templates(self) -> 'list[ContentFileOrDirectory]':
-        pass
-    def create_folders(self, folders : 'list[str]') -> bool:
-        pass
-    def write_files(self, files: 'list[ContentFileOrDirectory]') -> None:
-        pass
+from aycppgen_core.wrapfilesystem import FileSystem
 
 #todo test that project spec functions as intended with regard to folder initialisation
 class ProjectSpec:
@@ -35,9 +21,10 @@ class Generator:
             templ.baseDir = base_dir
             templ.relative = templ.relative.replace("template_project_name", spec.name)
             templ.name= f'{templ.baseDir}/{templ.relative}'
-            if templ.isFile:
-                templ.content = templ.content.replace("template_project_name", spec.name)
-        dirs = list(f'{t.name}' for t in templates if t.isDirectory)
+            if templ.IsFile():
+                templ : FileSystemEntry
+                templ.ReplaceContent("template_project_name", spec.name)
+        dirs = list(f'{t.name}' for t in templates if t.IsDirectory())
         self.__filesysystem.create_folders(dirs)
-        files = list([ t for t in templates if t.isFile])
+        files = list([ t for t in templates if t.IsFile()])
         self.__filesysystem.write_files(files)

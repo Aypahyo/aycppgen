@@ -1,20 +1,29 @@
 import argparse
+from aycppgen_core.InterfaceManager import InterfaceManager
 from aycppgen_core.config import Config
+from aycppgen_core.linuxfilesystem import LinuxFileSystem
 from aycppgen_core.logginghelper import logginghelper_set_up_logs
 from aycppgen_core.projectmanager import ProjectManager
 
 from aycppgen_gui.controller import GuiController
 from aycppgen_gui.layouts import GetLayouts
 
+def makecontroller() -> GuiController:
+    logginghelper_set_up_logs()
+    config = Config()
+    file_system = LinuxFileSystem()
+    project_manager = ProjectManager(config)
+    interface_manager = InterfaceManager(file_system)
+    layouts = GetLayouts(config)
+    controller = GuiController(layouts, project_manager, interface_manager)
+    return controller
+
 def command_selftest():
+    makecontroller()
     print("looking good")
 
 def command_gui():
-    logginghelper_set_up_logs()
-    config = Config()
-    project_manager = ProjectManager(config)
-    layouts = GetLayouts(config)
-    controller = GuiController(layouts, project_manager)
+    controller = makecontroller()
     controller.run()
 
 COMMAND_SELFTEST = "selftest"

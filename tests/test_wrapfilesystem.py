@@ -4,7 +4,7 @@ import os
 import unittest
 from unittest.mock import Mock
 
-from aycppgen_core.wrapfilesystem import LinuxFileSystem
+from aycppgen_core.linuxfilesystem import LinuxFileSystem
 
 class TestFileSystem(unittest.TestCase):
     __uut : LinuxFileSystem = None
@@ -61,17 +61,17 @@ class TestFileSystem(unittest.TestCase):
 
     def test_load_all_templates(self):
         entries = self.__uut.load_all_templates()
-        self.assertTrue(all([ exists(e.name) for e in entries]), 'all exists')
-        self.assertTrue(any([ isfile(f.name) for f in entries]), 'any isfile')
-        self.assertTrue(any([ isdir(d.name) for d in entries]), 'any isdir')
+        self.assertTrue(all([ exists(e.GetName()) for e in entries]), 'all exists')
+        self.assertTrue(any([ isfile(f.GetName()) for f in entries]), 'any isfile')
+        self.assertTrue(any([ isdir(d.GetName()) for d in entries]), 'any isdir')
 
-        self.assertTrue(all([ e.name == f'{e.baseDir}/{e.relative}' for e in entries]), 'all exists')
+        self.assertTrue(all([ e.GetName() == f'{e.GetBase()}/{e.GetRelative()}' for e in entries]), 'all exists')
 
-        directores = [ d for d in entries if isdir(d.name)]
-        self.assertTrue(all([ e.isDirectory and e.content is None for e in directores]), 'isdir and no content')
+        directores = [ d for d in entries if isdir(d.GetName())]
+        self.assertTrue(all([ e.IsDirectory() for e in directores]), 'isdir and no content')
 
-        files = [ f for f in entries if isfile(f.name)]
-        self.assertTrue(all([ e.isFile and e.content is not None for e in files]), 'isfile and content')
+        files = [ f for f in entries if isfile(f.GetName())]
+        self.assertTrue(all([ e.IsFile() for e in files]), 'isfile and content')
 
     
 
